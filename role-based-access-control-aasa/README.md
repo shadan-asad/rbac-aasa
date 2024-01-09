@@ -1,15 +1,19 @@
 # Role Based Access Control 
-This is a Role Based Access Control application using Nodejs, Express
-Three roles are assigned to the users: Admin, Moderator & User
-User, Admin, Moderator can access the /dashboard
-Admin can access the /settings
-Moderator can access the /statistics
+This is a Role Based Access Control application using Nodejs, Express. <br>
+Three roles are assigned to the users: Admin, Moderator & User. <br>
+User, Admin, Moderator can access the /dashboard. <br>
+Admin can access the /settings. <br>
+Moderator can access the /statistics.
 
 CRUD is also implemented with the following APIs:
-/auth/register      : to add a user in db
-/auth/login         : to login and get the JWT token for the main APIs
-/auth/update-level  : to update the access-level for the users
-/auth/remove        : to delete the user
+<br>
+**/auth/register**      : to add a user in db
+<br>
+**/auth/login**         : to login and get the JWT token for the main APIs
+<br>
+**/auth/update-level**  : to update the access-level for the users
+<br>
+**/auth/remove**        : to delete the user
 
 
 **MongoDB** is used for storing Users in Database.
