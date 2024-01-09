@@ -41,6 +41,7 @@ Step 3: Put your credentials in the .env file.
 PORT=3000
 MONGODB_URI=YOUR_MONGODB_URI(example: mongodb://localhost:27017)
 DB_NAME=YOUR_DB_NAME
+JWT_SECRET_KEY=aasa
 ```
 
 Step 4: Install MongoDB
