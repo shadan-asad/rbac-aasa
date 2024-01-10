@@ -60,3 +60,9 @@ Step 6: Start the app by
 npm start
 ```
 
+## How does it work ?
+1. Register a user <br>
+2. Login with the registered user, after successful login copy the token <br>
+3. Paste the token in authorisation header to call any API <br>
+
+
