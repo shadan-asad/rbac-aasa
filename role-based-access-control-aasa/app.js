@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 // Error Handler
 app.use((error, req, res, next) => {
   error.status = error.status || 500;
-  res.status(error.status);
+  res.status(error.status).json({ error: error.message });
 });
 
 // Setting the PORT

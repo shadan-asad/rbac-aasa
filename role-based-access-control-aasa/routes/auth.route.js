@@ -4,10 +4,10 @@ const jwt = require("jsonwebtoken");
 const { roles } = require("../utils/constants");
 const mongoose = require('mongoose');
 
+// Verifies the credentials and returns the auth token
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
     const user = await User.findOne({ email });
 
     // Username/email does NOT exist
@@ -32,6 +32,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Adds a new user
 router.post("/register", async (req, res, next) => {
   try {
     console.log(req.body);
@@ -48,11 +49,10 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
+// Changes the access level for users
 router.patch("/update-level", async (req, res) => {
   try {
     const { id, accessLevel } = req.body;
-    console.log(req.body);
-    // Checking for id and roles in req.body
     if (!id || !accessLevel) {
       return res.status(401).json({ error: "Invalid request" });
     }
@@ -68,7 +68,7 @@ router.patch("/update-level", async (req, res) => {
       return res.status(401).json({ error: "Invalid role selected" });
     }
 
-    // Finally update the user
+    // Finally update the access level for this user
     await User.findByIdAndUpdate(
       id,
       { accessLevel },
@@ -81,6 +81,7 @@ router.patch("/update-level", async (req, res) => {
   }
 });
 
+// Removes the user
 router.delete("/remove", async (req, res) => {
   try {
     const email = req.query.email;
@@ -96,7 +97,7 @@ router.delete("/remove", async (req, res) => {
       return res.status(401).json({ error: "User not found" });
     }
 
-    // If it is an admin access level, it can't be deleted
+    // If it has an admin access level, it can't be deleted
     if(user.accessLevel === 'ADMIN') {
       return res.status(401).json({ error: "You can't delete admin" });
     }
