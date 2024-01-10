@@ -1,0 +1,193 @@
+openapi: 3.0.0
+info:
+  title: rbac
+  version: 1.0.0
+  description: API endpoints for your application
+
+paths:
+  /auth/login:
+    post:
+      summary: Authenticate user
+      description: Verifies user credentials and returns an auth token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /auth/register:
+    post:
+      summary: Register a new user
+      description: Adds a new user to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+        '401':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /auth/update-level:
+    patch:
+      summary: Update user access level
+      description: Changes the access level for a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                accessLevel:
+                  type: string
+      responses:
+        '200':
+          description: Access level updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+        '401':
+          description: Invalid request or role
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /auth/remove:
+    delete:
+      summary: Remove user
+      description: Deletes a user from the system
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+        '401':
+          description: Invalid request or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /dashboard:
+    get:
+      summary: Get dashboard data
+      description: Retrieves profile information (accessible to all accessLevel)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  email:
+                    type: string
+                  accessLevel:
+                    type: string
+  /statistics:
+    get:
+      summary: Get statistics data
+      description: Retrieves statistics information (accessible to moderators only)
+      security:
+        - accessLevel: ['MODERATOR']
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access: 
+                    enum: ['allowed', 'denied']
+
+  /settings:
+    get:
+      summary: Get settings data
+      description: Retrieves settings information (accessible to admins only)
+      security:
+        - accessLevel: ['ADMIN']
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  all_users:
+                    type: array
