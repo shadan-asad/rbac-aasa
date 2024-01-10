@@ -1,9 +1,9 @@
 # Role Based Access Control 
 This is a Role Based Access Control application using Nodejs, Express. <br>
 Three roles are assigned to the users: Admin, Moderator & User. <br>
-User, Admin, Moderator can access the /dashboard. <br>
-Admin can access the /settings. <br>
-Moderator can access the /statistics.
+User, Admin, Moderator can access the **/dashboard**. <br>
+Admin can access the **/settings**. <br>
+Moderator can access the **/statistics**.
 
 CRUD is also implemented with the following APIs:
 <br>
