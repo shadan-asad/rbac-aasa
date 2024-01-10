@@ -15,6 +15,9 @@ CRUD is also implemented with the following APIs:
 <br>
 **/auth/remove**        : to delete the user
 
+### Postman Library Link for the APIs
+https://www.postman.com/grey-station-249096/workspace/public/collection/28279804-bd4d066e-87e1-4559-aaaa-b3e01f51e139?action=share&creator=28279804
+
 
 **MongoDB** is used for storing Users in Database.
 
