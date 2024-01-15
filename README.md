@@ -35,6 +35,7 @@ git clone https://github.com/shadan-asad/rbac-aasa
 Step 2: cd into the repo and run:
 
 ```bash
+cd role-based-access-control-aasa
 npm install
 ```
 
